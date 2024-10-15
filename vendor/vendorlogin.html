@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PresUniverse</title>
+    <link rel="stylesheet" href="vendorlogin.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> 
+    <style>
+        
+       .register-link p a:hover{
+        text-decoration: underline;
+        
+    }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () { 
+            $('.input-box input').focus(function () {
+                $(this).parent().addClass('active');
+            });
+    
+            $('.input-box input').blur(function () { 
+                if ($(this).val() === '') { 
+                    $(this).parent().removeClass('active'); 
+                }   
+            });
+        });
+
+        $(document).ready(function () {
+            $('.show-password').click(function () { 
+                const passwordField = $(this).siblings('input'); 
+                const fieldType = passwordField.attr('type'); 
+            
+                if (fieldType === 'password') { 
+                    passwordField.attr('type', 'text'); 
+                } else {
+                    passwordField.attr('type', 'password');
+                }
+            });
+        });
+        const urlParams = new URLSearchParams(window.location.search);
+        const errorMessage = urlParams.get('error');
+        if (errorMessage) {
+            alert(errorMessage);
+        }
+    </script>
+    
+</head>
+<body>
+    
+    <div class="wrapper">
+       
+        <form action="vendorlogin.php" method="post"> 
+            <h1>Login</h1>
+            <div class="input-box">
+                <input type="text" name="username" placeholder="username" title="lowercase and minimum 4 characters" required>
+                <i class='bx bxs-user'></i> 
+            </div>
+
+
+            <div class="input-box">
+                <input type="password" name="password" placeholder="password" required title="At least 1 capital and 8 characters">
+                <i class='bx bxs-lock-alt'></i>
+                <span class="show-password"  style="cursor: pointer;" >show password</span>
+            </div>
+
+
+            <button type="submit" name="submit" value="submit" class="button" style="font-size: 16px; ">Login</button>
+           
+        </form>
+    </div>
+</body>
+</html>
